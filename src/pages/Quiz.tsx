@@ -12,9 +12,11 @@ const Quiz = () => {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
+  // useEffect(() => {
     fetchQuestions().then(setQuestions);
-  }, []);
+  // }, []);
+  // fetchQuestions()
+
 
   const handleAnswer = (answer: string) => {
     if (selectedAnswer) return;
