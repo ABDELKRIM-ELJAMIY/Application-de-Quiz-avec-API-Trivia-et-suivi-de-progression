@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchQuestions } from "../utils/fetchQuestions";
 import { QuestionType } from "../types/question";
@@ -12,10 +12,8 @@ const Quiz = () => {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-    fetchQuestions().then(setQuestions);
-  // }, []);
-  // fetchQuestions()
+
+  fetchQuestions().then(setQuestions);
 
 
   const handleAnswer = (answer: string) => {
@@ -39,10 +37,10 @@ const Quiz = () => {
     }, 100);
   };
 
-  if (questions.length === 0) return <p className="text-white">Chargement...</p>;
+  if (questions.length === 0) return <p className="text-[#F5EEDD]">Chargement...</p>;
 
   return (
-    <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center px-4">
+    <div className="min-h-screen bg-[#06202B] flex flex-col items-center justify-center px-4">
       <div className="max-w-xl w-full">
         <Question
           question={questions[currentIndex]}
