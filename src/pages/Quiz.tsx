@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchQuestions } from "../utils/fetchQuestions";
 import { QuestionType } from "../types/question";
 import Question from "../compenents/Question";
 import ProgressBar from "../compenents/ProgressBar";
+import GameBackground from "../compenents/GameBackground ";
 
 const Quiz = () => {
   const [questions, setQuestions] = useState<QuestionType[]>([]);
@@ -12,9 +13,9 @@ const Quiz = () => {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const navigate = useNavigate();
 
-
-  fetchQuestions().then(setQuestions);
-
+  useEffect(() => {
+    fetchQuestions().then(setQuestions);
+  }, []);
 
   const handleAnswer = (answer: string) => {
     if (selectedAnswer) return;
@@ -37,11 +38,17 @@ const Quiz = () => {
     }, 100);
   };
 
-  if (questions.length === 0) return <p className="text-[#F5EEDD]">Chargement...</p>;
+  if (questions.length === 0)
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-black text-white text-xl">
+        <p className="drop-shadow-[0_0_10px_#00FFC3] animate-pulse">Chargement...</p>
+      </div>
+    );
 
   return (
-    <div className="min-h-screen bg-[#06202B] flex flex-col items-center justify-center px-4">
-      <div className="max-w-xl w-full">
+    <div className="relative min-h-screen flex items-center justify-center px-4  text-white">
+      <GameBackground />
+      <div className="relative z-10 max-w-xl w-full bg-[#0A0F2C] p-6 rounded-2xl shadow-[0_0_20px_#00FFC3]">
         <Question
           question={questions[currentIndex]}
           onAnswer={handleAnswer}

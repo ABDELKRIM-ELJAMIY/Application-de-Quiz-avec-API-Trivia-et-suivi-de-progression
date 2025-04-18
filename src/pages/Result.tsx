@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import GameBackground from "../compenents/GameBackground ";
 
 type Props = {
   score: number;
@@ -18,31 +19,31 @@ const Result = () => {
     if (playerName) {
       setName(playerName);
     }
-  }, []); 
+  }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#06202B] px-4">
-      <div className="bg-[#1f2937] p-8 rounded-2xl shadow-lg text-center max-w-md w-full">
-        <h2 className="text-4xl font-bold text-[#F5EEDD] mb-6">Résultat</h2>
-        <h2 className="text-4xl font-bold text-[#00fc3f] mb-6">{name}</h2>
-        <p className="text-xl text-[#F5EEDD]">
-          Tu as eu{" "}
-          <span className="text-[#7AE2CF] font-semibold text-2xl">{score}</span> bonnes réponses
-          sur <span className="text-[#7AE2CF] font-semibold text-2xl">{total}</span> !
-        </p>
+    <div className="relative min-h-screen flex items-center justify-center px-4">
+      <GameBackground />
 
-        <div className="mt-6">
-          {/* <div className="w-full bg-[#374151] rounded-full h-4 overflow-hidden">
-            <div
-              className="bg-[#7AE2CF] h-full transition-all duration-500"
-              style={{ width: `${(score / total) * 100}%` }}
-            ></div>
-          </div> */}
-        </div>
+      <div className="relative z-10 bg-[#0A0F2C] bg-opacity-90 p-10 rounded-2xl shadow-[0_0_30px_#1E90FF] text-center max-w-md w-full">
+        <h2 className="text-5xl font-bold text-[#00FFC3] mb-4 drop-shadow-[0_0_8px_#00FFC3]">
+          Résultat
+        </h2>
+
+        <h3 className="text-4xl font-bold text-white mb-8 drop-shadow-[0_0_5px_#7AE2CF]">
+          Bravo, <span className="text-[#00FFC3]">{name}</span> !
+        </h3>
+
+        <p className="text-xl text-[#F5EEDD] mb-6">
+          Tu as eu{" "}
+          <span className="text-[#00FFC3] font-bold text-3xl">{score}</span> bonnes réponses
+          sur{" "}
+          <span className="text-[#00FFC3] font-bold text-3xl">{total}</span>.
+        </p>
 
         <button
           onClick={() => navigate("/")}
-          className="mt-8 bg-[#7AE2CF] hover:bg-[#077A7D] text-white font-semibold py-2 px-6 rounded-full transition duration-300"
+          className="mt-6 bg-[#00FFC3] hover:bg-[#1B003C] text-black hover:text-white font-bold py-3 px-8 rounded-full shadow-[0_0_15px_#00FFC3] transition-all duration-300"
         >
           Retour à l'accueil
         </button>

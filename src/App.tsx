@@ -1,12 +1,14 @@
 import Home from './pages/Home';
 import Quiz from './pages/Quiz';
+import GameBackground from './compenents/GameBackground ';
 import Result from './pages/Result';
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+ 
 function App() {
 
   return (
+    
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
